@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Website</title>
+    <style>
+        body {
+            background-color: yellow;
+            background-image: radial-gradient(gray 10%, transparent 11%);
+            background-size: 30px 30px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: black;
+            font-size: 4em;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px;
+            text-align: justify;
+        }
+        .photos {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .photos img {
+            width: 30%;
+            height: auto;
+            border: 2px solid black;
+        }
+        .video {
+            text-align: center;
+            margin: 20px;
+        }
+        .star-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2em;
+            color: gold;
+            text-decoration: none;
+        }
+        .word {
+            position: absolute;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .word:hover {
+            color: red;
+            font-size: 2em;
+            letter-spacing: 5px;
+            border: 2px solid black;
+            padding: 5px;
+        }
+        /* Random placement of words */
+        .word1 { top: 150px; left: 100px; }
+        .word2 { top: 250px; right: 150px; }
+        .word3 { bottom: 200px; left: 200px; }
+        .word4 { bottom: 100px; right: 100px; }
+        .word5 { top: 300px; left: 300px; }
+
+        /* Styles for OMG word */
+        .omg-container {
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            width: 150px;
+            height: 100px;
+            background-color: rgba(0, 0, 255, 0.2); /* Background oval */
+            border-radius: 50%; /* Make it an oval */
+            transition: all 0.3s ease;
+        }
+        .omg {
+            font-size: 3em;
+            font-weight: bold;
+            color: purple;
+            text-shadow: 2px 2px 5px rgba(0, 0, 255, 0.5), -2px -2px 5px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            top: 50%; /* Center text vertically */
+            left: 50%; /* Center text horizontally */
+            transform: translate(-50%, -50%);
+        }
+        .omg-container:hover {
+            width: 0;
+            height: 0;
+            border-radius: 0;
+            background-color: transparent;
+            border-left: 75px solid rgba(0, 0, 255, 0.2);
+            border-right: 75px solid rgba(0, 0, 255, 0.2);
+            border-bottom: 100px solid rgba(0, 0, 255, 0.2);
+            transform: rotate(0deg);
+        }
+        .omg-container:hover .omg {
+            color: purple;
+            font-size: 4em;
+        }
+        .omg-container:active .omg {
+            transform: translate(-50%, -50%) rotateY(180deg); /* Rotate omg on click */
+        }
+
+        @keyframes grow {
+            0% { font-size: 3em; }
+            50% { font-size: 5em; }
+            100% { font-size: 3em; }
+        }
+
+        /* Styles for bananas */
+        .banana {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            pointer-events: none; /* 禁止香蕉响应鼠标事件 */
+        }
+    </style>
+</head>
+<body>
+
+    <a href="http://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/language/columns/v0m20b/stories/WS5deeed09a310cf3e3557d02e.html" class="star-link">&#9733;</a>
+
+    <h1>banananananna</h1>
+
+    <p>
+        Titled “Comedian”, the original artwork by Italian artist Maurizio Cattelan was on sale last week from Parisian gallery Perrotin, at the Art Basel festival in Miami. The first edition of the artwork was snatched up by a French art collector for the mind-blowing price of $120,000, and according to gallery owner Emmanuel Perrotin, a second edition of Comedian was already sold for the same dizzying price. After successfully selling two bananas for a total of $240,000, the artist and the Perrotin gallery owner decided to up the price of the third edition to $150,000.
+    </p>
+
+    <div class="photos">
+        <img src="5deef2a7a310cf3e97aacd09.jpg" alt="5deef2a7a310cf3e97aacd09">
+        <img src="20211230163618_99538.gif" alt="20211230163618_99538.">
+        <img src="7c5c7c92bcfdd1d12f0eae5c6.jpg" alt="7c5c7c92bcfdd1d12f0eae5c6.">
+    </div>
+
+    <div class="123123">
+        <video width="80%" controls>
+            <source src="1231203.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Randomly placed words -->
+    <div class="word word1">hello</div>
+    <div class="word word2">how</div>
+    <div class="word word3">why</div>
+    <div class="word word4">where</div>
+    <div class="word word5">when</div>
+
+    <!-- OMG word with container -->
+    <div class="omg-container" id="omg-container">
+        <div class="omg" id="omg">omg</div>
+    </div>
+
+    <script>
+        // JavaScript for creating bananas on click
+        document.addEventListener('click', (e) => {
+            createBanana(e.clientX + window.scrollX, e.clientY + window.scrollY);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            createBanana(e.clientX + window.scrollX, e.clientY + window.scrollY);
+        });
+
+        function createBanana(x, y) {
+            const banana = document.createElement('img');
+            banana.src = 'download.jpg'; // 替换为香蕉图片的路径
+            banana.classList.add('banana');
+            banana.style.left = `${x}px`;
+            banana.style.top = `${y}px`;
+            document.body.appendChild(banana);
+
+            // 自动移除香蕉，防止页面上香蕉过多
+            setTimeout(() => {
+                banana.remove();
+            }, 5000); // 5秒后移除香蕉
+        }
+
+        // JavaScript for changing letter-spacing of "omg" word on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const omg = document.getElementById('omg');
+            const distance = Math.sqrt(Math.pow(e.clientX - omg.offsetLeft, 2) + Math.pow(e.clientY - omg.offsetTop, 2));
+            omg.style.letterSpacing = `${Math.min(distance / 20, 20)}px`; // Adjust letter-spacing based on distance
+        });
+    </script>
+
+</body>
+</html>
